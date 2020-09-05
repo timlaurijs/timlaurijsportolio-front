@@ -1,6 +1,4 @@
-const initialState = {
-  posts: [],
-}
+const initialState = {}
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
