@@ -12,8 +12,8 @@ export const fetchPosts = `
 	  url
   },
   "images": mainImage[]{
-    ...asset{
-      "url": _ref
+    ...asset->{
+    url
     }
   },
   "categories": categories[]->{

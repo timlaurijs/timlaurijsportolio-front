@@ -35,8 +35,9 @@ function App() {
       <MessageBox />
       {isLoading && <Loading />}
       <Switch>
-        <Route exact path="/" component={Homepage} />
         <Route path="/about" component={About} />
+        <Route path="/:slug" component={Homepage} />
+        <Route path="/" component={Homepage} />
       </Switch>
     </div>
   )
