@@ -1,5 +1,14 @@
 @import "../../style/config";
 
 .WorkIndex {
-  left: 5;
+  left: 5px;
+  top: 5vh;
+  padding: 8px;
+  position: fixed;
+  text-align: left;
+  background: $primary;
+  a {
+    display: block;
+    line-height: 20px;
+  }
 }
