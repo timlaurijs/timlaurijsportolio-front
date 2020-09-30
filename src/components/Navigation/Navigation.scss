@@ -1,1 +1,12 @@
 @import "../../style/config";
+
+.Navigation {
+  padding: 10px 0px;
+  a {
+    color: blue;
+    // visibility: hidden;
+  }
+  // .active {
+  //   visibility: hidden;
+  // }
+}
