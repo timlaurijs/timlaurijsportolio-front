@@ -1,4 +1,12 @@
 export const selectError = (state) => state.App.error
+
+export const selectAllPosts = (state) => state.App.posts
+
+export const getCurrentPost = (slug) => (state) => {
+  state.App.currentPost &&
+    state.App.currentPost.filter((post) => post.slug === slug)
+}
+
 export const selectTitles = (state) =>
   Object.values(state.App.posts).map(({ title, slug, id }) => ({
     title,
@@ -6,29 +14,16 @@ export const selectTitles = (state) =>
     id,
   }))
 
-export const selectCurrentTitle = (slug) => (state) => {
-  const work = state.App.posts.filter(
-    (work) => work.slug === slug && work.title
-  )
-  return work[0] ? work[0].title : null
-}
+export const selectTitle = (state) =>
+  state.App.currentPost.title && state.App.currentPost.title
 
-export const selectBodyText = (slug) => (state) => {
-  const work = state.App.posts.filter((work) => work.slug === slug && work.body)
-  // console.log("body?", work[0])
-  return work[0] ? work[0] : null
-}
-// .body[0].children[0].text
-export const selectVideos = (slug) => (state) => {
-  const work = state.App.posts.filter(
-    (work) => work.slug === slug && work.video
-  )
-  return work[0] ? work[0].video.map((url) => url.url) : []
-}
+export const selectBodyText = (state) =>
+  state.App.currentPost.body && state.App.currentPost.body
 
-export const selectImages = (slug) => (state) => {
-  const work = state.App.posts.filter(
-    (work) => work.slug === slug && work.images
-  )
-  return work[0] ? work[0].images.map((url) => url.url) : []
-}
+export const selectVideos = (state) =>
+  state.App.currentPost.video &&
+  state.App.currentPost.video.map((video) => video.url)
+
+export const selectImages = (state) =>
+  state.App.currentPost.images &&
+  state.App.currentPost.images.map((image) => image.url)

@@ -8,13 +8,11 @@ import "./VideoPlayer.scss"
 
 const VideoPlayer = () => {
   const { slug } = useParams()
-  const videoUrls = useSelector(selectVideos(slug))
-  // console.log("slug from params", slug)
-  // console.log(" videos", videoUrls)
+  const videoUrls = useSelector(selectVideos)
 
   return (
     <div className="VideoPlayer">
-      {videoUrls.map((video, i) => (
+      {/* {videoUrls.map((video, i) => (
         <iframe
           key={i}
           width="420"
@@ -22,7 +20,7 @@ const VideoPlayer = () => {
           src={videoUrls}
           // ref={(ref) => console.dir(ref)}
         ></iframe>
-      ))}
+      ))} */}
     </div>
   )
 }

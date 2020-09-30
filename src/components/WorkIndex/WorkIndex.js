@@ -1,13 +1,13 @@
 import React from "react"
-import { useSelector } from "react-redux"
-import { useHistory, Link } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+
 //store
 import { selectTitles } from "../../App/App-selectors"
 //style
 import "./WorkIndex.scss"
 
 const WorkIndex = () => {
-  const history = useHistory()
   const titles = useSelector(selectTitles)
 
   return (
