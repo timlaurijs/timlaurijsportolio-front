@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
+import Modal from "react-modal"
 //store
 import { selectImages, getCurrentPost } from "../../App/App-selectors"
 //style
@@ -10,7 +11,14 @@ const Images = () => {
   const { slug } = useParams()
   const imageUrls = useSelector(selectImages)
   const [selectedImage, setSelectedImage] = useState("")
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
+  Modal.setAppElement("#root")
+
+  const indexOfImage = imageUrls && imageUrls.indexOf(selectedImage)
+  const lengthOfImageUrls = imageUrls && imageUrls.length
+
+  console.log(lengthOfImageUrls)
   // sets selectedImage fot first of the array if empty
   useEffect(() => {
     if (imageUrls && selectedImage === "") setSelectedImage(imageUrls[0])
@@ -23,28 +31,84 @@ const Images = () => {
     else setSelectedImage("")
   }, [imageUrls, selectedImage])
 
-  imageUrls && console.log("imageUrl amount", imageUrls.length)
+  // add event listener for keydown
+  useEffect(() => {
+    const handler = handleKeyDown(indexOfImage, lengthOfImageUrls)
+    window.addEventListener("keydown", handler)
+    return () => {
+      window.removeEventListener("keydown", handler)
+    }
+  }, [indexOfImage])
+
+  const handleKeyDown = (index, indexLength) => (event) => {
+    if (event.key === "ArrowLeft" && !event.repeat)
+      setSelectedImage(imageUrls[index - 1 < 0 ? indexLength - 1 : index - 1])
+    else if (event.key === "ArrowRight" && !event.repeat)
+      setSelectedImage(imageUrls[(index + 1) % indexLength])
+    else return
+  }
+
+  const selectedThumbnail = (url) => {
+    if (url === selectedImage) {
+      return { opacity: 0.5 }
+    }
+  }
 
   return (
     <div className="Images">
+      <Modal
+        style={{
+          overlay: {
+            position: "fixed",
+            top: "0px",
+            left: "0px",
+            right: "0px",
+            bottom: "0px",
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+          },
+          content: {
+            position: "absolute",
+            top: "30px",
+            left: "30px",
+            right: "30px",
+            bottom: "30px",
+            border: "0px",
+            background: "white",
+            backgroundColor: "black",
+            overflow: "hidden",
+            WebkitOverflowScrolling: "touch",
+            borderRadius: "4px",
+            outline: "none",
+            padding: "0px",
+            display: "flex",
+            alignContent: "center",
+            justifyContent: "center",
+          },
+        }}
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+      >
+        <img
+          src={selectedImage}
+          style={{ maxWidth: "100%", maxHeight: "100%", overflow: "hidden" }}
+        ></img>
+      </Modal>
       <div className="Images__nav">
         {imageUrls && imageUrls.length > 1
           ? imageUrls.map((image, i) => (
-              <div
+              <img
+                src={image}
                 className="Images__nav__button"
                 key={i}
                 onClick={() => setSelectedImage(image)}
-                style={{ backgroundImage: `url(${image})` }}
-              />
+                style={selectedThumbnail(image)}
+              ></img>
             ))
           : null}
       </div>
 
-      <div
-        className="Images__selected"
-        /*style={{ backgroundImage: `url(${selectedImage})` }}*/
-      >
-        <img src={selectedImage}></img>
+      <div className="Images__selected">
+        <img src={selectedImage} onClick={() => setModalIsOpen(true)}></img>
       </div>
     </div>
   )
