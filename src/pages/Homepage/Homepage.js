@@ -7,6 +7,7 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer"
 import Images from "../../components/Images/Images"
 import BodyText from "../../components/BodyText/BodyText"
 import Title from "../../components/Title/Title"
+import Footer from "../../components/Footer/Footer"
 //Store
 import { updateCurrentPost } from "../../App/App-actions"
 import { selectAllPosts } from "../../App/App-selectors"
@@ -24,12 +25,14 @@ const Homepage = () => {
 
   return (
     <div className="Homepage">
-      <h1>Works</h1>
+      <div className="Homepage__Navigation">Navigatie</div>
+      <div className="Homepage__Logo">Logo</div>
       <Title />
       <WorkIndex />
-      <VideoPlayer />
+      {/* <VideoPlayer /> */}
       <Images />
       <BodyText />
+      <Footer />
     </div>
   )
 }
