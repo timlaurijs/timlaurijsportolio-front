@@ -12,7 +12,7 @@ const BodyText = () => {
   const bodyText = useSelector(selectBodyText)
 
   return (
-    <div>
+    <div className="BodyText">
       {bodyText &&
         bodyText
           .filter(({ _type }) => _type === "block")
