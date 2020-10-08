@@ -1,12 +1,12 @@
 @import "../../style/config";
 
 .WorkIndex {
-  left: 5px;
-  top: 5vh;
+  @include WorkIndex-grid;
+
   padding: 8px;
-  position: fixed;
+  // position: fixed;
   text-align: left;
-  background: $primary;
+  // background: $primary;
   a {
     display: block;
     line-height: 20px;
