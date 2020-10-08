@@ -23,21 +23,27 @@ const Images = () => {
     else setSelectedImage("")
   }, [imageUrls, selectedImage])
 
+  imageUrls && console.log("imageUrl amount", imageUrls.length)
+
   return (
     <div className="Images">
       <div className="Images__nav">
-        {imageUrls &&
-          imageUrls.map((image, i) => (
-            <div
-              className="Images__nav__buttons"
-              key={i}
-              onClick={() => setSelectedImage(image)}
-              style={{ backgroundImage: `url(${image})` }}
-            />
-          ))}
+        {imageUrls && imageUrls.length > 1
+          ? imageUrls.map((image, i) => (
+              <div
+                className="Images__nav__button"
+                key={i}
+                onClick={() => setSelectedImage(image)}
+                style={{ backgroundImage: `url(${image})` }}
+              />
+            ))
+          : null}
       </div>
 
-      <div className="Images__selected">
+      <div
+        className="Images__selected"
+        /*style={{ backgroundImage: `url(${selectedImage})` }}*/
+      >
         <img src={selectedImage}></img>
       </div>
     </div>
