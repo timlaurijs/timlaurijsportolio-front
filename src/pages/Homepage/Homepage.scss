@@ -1,7 +1,7 @@
 @import "../../style/config";
 
 .Homepage {
-  background-color: aqua;
+  // background-color: aqua;
   height: 100vh;
   width: 100vw;
   display: grid;
@@ -9,13 +9,13 @@
   grid-template: 1fr 12fr 1fr / 2fr 7fr 3fr;
 
   &__Navigation {
-    background-color: red;
+    // background-color: red;
     grid-row: 1;
     grid-column: 1;
   }
 
   &__Logo {
-    background-color: darkgreen;
+    // background-color: darkgreen;
     grid-row: 1;
     grid-column: 3;
   }
