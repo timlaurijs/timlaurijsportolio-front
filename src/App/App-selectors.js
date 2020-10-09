@@ -2,16 +2,17 @@ export const selectError = (state) => state.App.error
 
 export const selectAllPosts = (state) => state.App.posts
 
-export const getCurrentPost = (slug) => (state) => {
-  state.App.currentPost &&
-    state.App.currentPost.filter((post) => post.slug === slug)
-}
+export const getCurrentPost = (state) => state.App.currentPost &&
+    state.App.currentPost
+
+
 
 export const selectTitles = (state) =>
-  Object.values(state.App.posts).map(({ title, slug, id }) => ({
+  Object.values(state.App.posts).map(({ title, slug, id, publishedAt }) => ({
     title,
     slug,
     id,
+    publishedAt: new Date(publishedAt).getFullYear()
   }))
 
 export const selectTitle = (state) =>
@@ -27,3 +28,5 @@ export const selectVideos = (state) =>
 export const selectImages = (state) =>
   state.App.currentPost.images &&
   state.App.currentPost.images.map((image) => image.url)
+
+  export const selectMediaType = (state) => state.App.mediaType
