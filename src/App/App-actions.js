@@ -3,6 +3,7 @@ export const UPDATE_CURRENT_POST = "UPDATE_CURRENT_POST"
 export const UPDATE_IS_LOADING = "UPDATE_IS_LOADING"
 export const UPDATE_ERROR = "UPDATE_ERROR"
 export const RESET_CURRENT_POST = "RESET_CURRENT_POST"
+export const UPDATE_MEDIA_TYPE = "UPDATE_MEDIA_TYPE"
 
 export const updateError = (data) => {
   return {
@@ -12,7 +13,6 @@ export const updateError = (data) => {
 }
 
 export const updatePosts = (data) => {
-  console.log("updatePosts")
   return {
     type: UPDATE_POSTS,
     payload: data,
@@ -20,7 +20,6 @@ export const updatePosts = (data) => {
 }
 
 export const updateCurrentPost = (slug) => {
-  console.log("updateCurrentPost")
   if (slug)
     return async (dispatch, getState) => {
       const selectedPost = getState().App.posts.filter(
@@ -39,6 +38,12 @@ export const updateCurrentPostSuccess = (data) => {
 export const resetCurrentPost = (data) => {
   return {
     type: UPDATE_CURRENT_POST,
+    payload: data,
+  }
+}
+export const updateMediaType = (data) => {
+  return {
+    type: UPDATE_MEDIA_TYPE,
     payload: data,
   }
 }
