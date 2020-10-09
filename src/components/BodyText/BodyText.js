@@ -1,15 +1,16 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
 import BlockContent from "@sanity/block-content-to-react"
+//components
+import ToggleButton from "../../components/ToggleButton/ToggleButton"
 //store
-import { selectBodyText } from "../../App/App-selectors"
+import { selectBodyText, getCurrentPost } from "../../App/App-selectors"
 //style
 import "./BodyText.scss"
 
 const BodyText = () => {
-  const { slug } = useParams()
   const bodyText = useSelector(selectBodyText)
+  const {video, images} = useSelector(getCurrentPost)
 
   return (
     <div className="BodyText">
@@ -19,6 +20,7 @@ const BodyText = () => {
           .map((block, i) => (
             <BlockContent key={i} blocks={block} serializers={{}} />
           ))}
+    {video && images ? <ToggleButton /> : null}
     </div>
   )
 }
