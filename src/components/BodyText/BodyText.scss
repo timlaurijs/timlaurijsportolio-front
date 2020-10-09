@@ -2,12 +2,13 @@
 
 .BodyText {
   @include BodyText-grid;
-
-  // width: 18%;
-  // right: 5px;
-  // top: 10vh;
-  // padding: 8px;
-  // position: fixed;
-  // text-align: left;
-  // background: $primary;
+  text-align: left;
+  margin-right: 10px;
+  em {
+    font-style: $italic;
+  }
+  em:after {
+    content: "\a\a";
+    white-space: pre;
+  }
 }
