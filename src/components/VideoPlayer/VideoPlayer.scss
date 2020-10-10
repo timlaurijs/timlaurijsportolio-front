@@ -3,7 +3,6 @@
 .VideoPlayer {
   @include Media-grid;
 
-  grid-template-rows: 9fr 1fr;
   display: flex;
   flex-direction: column;
 
@@ -11,16 +10,26 @@
   max-width: 100%;
   background-color: pink;
 
-  &__selected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &__main {
     order: 1;
     flex: 9;
-    img {
-      max-height: 100%;
-      max-width: auto;
-      object-fit: cover;
+    .mediaPlayer {
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      iframe {
+        min-height: 100%;
+        width: 100%;
+        margin: auto;
+      }
     }
+  }
+  &__nav {
+    display: flex;
+    order: 2;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-end;
   }
 }

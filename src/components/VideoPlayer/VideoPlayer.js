@@ -13,19 +13,15 @@ const VideoPlayer = () => {
 
   return (
     <div className="VideoPlayer">
-        <Media className="VideoPlayer__selected">
-        <div className="VideoPlayer__selected">
-          <div className="media-player">
-            <Player src="http://www.youtube.com/embed/h3YVKTxTOgU" />
+        <Media>
+          <div className="VideoPlayer__main">
+              <div className="mediaPlayer">
+                <Player src="http://www.youtube.com/embed/h3YVKTxTOgU" />
+              </div>
           </div>
-          <div className="media-controls">
-            <PlayPause />
-            <MuteUnmute />
-          </div>
-        </div>
-      </Media>
-      <div>
-        
+        </Media>
+      <div className="VideoPlayer__nav">
+        <p>Navbar</p>
       </div>
     </div>
   )
