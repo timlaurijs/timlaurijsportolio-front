@@ -1,5 +1,5 @@
 import React from "react"
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 //store
@@ -9,13 +9,20 @@ import "./WorkIndex.scss"
 
 const WorkIndex = () => {
   const titles = useSelector(selectTitles)
+  const uniqueYears = titles && [...new Set(titles.map(title => title.publishedAt))].sort((a, b) => b-a)
 
   return (
     <div className="WorkIndex">
-      {titles.map((title) => (
-        <Link key={title.id} to={`/${title.slug}`}>
-          {title.title}
-        </Link>
+      {uniqueYears.map((year, i) => (
+        <div key={i}>
+          <p>{year}</p>
+          {titles.length && titles
+            .filter(({publishedAt}) => publishedAt === year)
+            .map(({title, id, slug}) =>   
+            <Link key={id} to={`/${slug}`}>
+            - {title}
+          </Link>)}
+        </div>
       ))}
     </div>
   )
