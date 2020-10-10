@@ -1,1 +1,26 @@
 @import "../../style/config";
+
+.VideoPlayer {
+  @include Media-grid;
+
+  grid-template-rows: 9fr 1fr;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100%;
+  max-width: 100%;
+  background-color: pink;
+
+  &__selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+    flex: 9;
+    img {
+      max-height: 100%;
+      max-width: auto;
+      object-fit: cover;
+    }
+  }
+}
