@@ -56,6 +56,26 @@ const Images = () => {
 
   return (
     <div className="Images">
+      
+      <div className="Images__nav">
+        {imageUrls && imageUrls.length > 1
+          ? imageUrls.map((image, i) => (
+              <img
+                src={image}
+                className="Images__nav__button"
+                key={i}
+                onClick={() => setSelectedImage(image)}
+                style={selectedThumbnail(image)}
+                alt=""
+              ></img>
+            ))
+          : null}
+      </div>
+
+      <div className="Images__main">
+        <img src={selectedImage} onClick={() => setModalIsOpen(true)} alt=""></img>
+      </div>
+      
       <Modal
         style={{
           overlay: {
@@ -94,24 +114,6 @@ const Images = () => {
           alt=""
         ></img>
       </Modal>
-      <div className="Images__nav">
-        {imageUrls && imageUrls.length > 1
-          ? imageUrls.map((image, i) => (
-              <img
-                src={image}
-                className="Images__nav__button"
-                key={i}
-                onClick={() => setSelectedImage(image)}
-                style={selectedThumbnail(image)}
-                alt=""
-              ></img>
-            ))
-          : null}
-      </div>
-
-      <div className="Images__main">
-        <img src={selectedImage} onClick={() => setModalIsOpen(true)} alt=""></img>
-      </div>
     </div>
   )
 }
