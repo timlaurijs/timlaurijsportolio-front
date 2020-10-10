@@ -1,1 +1,24 @@
+// Homepage grids
+@import "../../pages/Homepage/grid.scss";
+@import "./typefaces";
+
+//colors
 $primary: white;
+
+// fontfaces
+$fontPrimary: "Roboto Condensed", sans-serif;
+$fontSecondary: "Secular One", sans-serif;
+
+//font weights
+$light: 300;
+$regular: 400;
+$bold: 700;
+
+// font size
+$bodySmall: 9pt;
+$bodyRegular: 12pt;
+
+//font styles
+$regular: none;
+$italic: italic;
+$bold: bold;

@@ -1,13 +1,11 @@
 import React from "react"
 import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
 //store
 import { selectVideos } from "../../App/App-selectors"
 //style
 import "./VideoPlayer.scss"
 
 const VideoPlayer = () => {
-  const { slug } = useParams()
   const videoUrls = useSelector(selectVideos)
 
   return (

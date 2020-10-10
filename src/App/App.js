@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
+      {/* <Navigation /> */}
       <MessageBox />
       {isLoading && <Loading />}
       <Switch>

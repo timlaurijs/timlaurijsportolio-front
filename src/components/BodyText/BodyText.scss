@@ -1,1 +1,14 @@
 @import "../../style/config";
+
+.BodyText {
+  @include BodyText-grid;
+  text-align: left;
+  margin-right: 10px;
+  em {
+    font-style: $italic;
+  }
+  em:after {
+    content: "\a\a";
+    white-space: pre;
+  }
+}

@@ -1,0 +1,32 @@
+@mixin Title-grid {
+  // background-color: blue;
+  grid-row: 1;
+  grid-column: 2;
+}
+@mixin WorkIndex-grid {
+  // background-color: magenta;
+  grid-row: 2;
+  grid-column: 1;
+}
+@mixin VideoPlayer-grid {
+}
+@mixin Images-grid {
+  // background-color: orange;
+  grid-row: 2;
+  grid-column: 2;
+}
+@mixin Video-grid {
+  // background-color: orange;
+  grid-row: 2;
+  grid-column: 2;
+}
+@mixin BodyText-grid {
+  // background-color: darkorchid;
+  grid-row: 2;
+  grid-column: 3;
+}
+@mixin Footer-grid {
+  // background-color: gray;
+  grid-row: 3;
+  grid-column: 1 / -1;
+}
