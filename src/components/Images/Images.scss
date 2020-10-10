@@ -2,7 +2,6 @@
 
 .Images {
   @include Media-grid;
-  grid-template-rows: 9fr 1fr;
   display: flex;
   flex-direction: column;
 
