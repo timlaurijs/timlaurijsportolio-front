@@ -8,7 +8,7 @@ export const fetchPosts = `
   ...author->{
     "author": name
   },
-  video[]{
+  "videos": video[]{
 	  url
   },
   "images": mainImage[]{

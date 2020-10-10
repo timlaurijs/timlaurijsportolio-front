@@ -10,7 +10,7 @@ import "./BodyText.scss"
 
 const BodyText = () => {
   const bodyText = useSelector(selectBodyText)
-  const {video, images} = useSelector(getCurrentPost)
+  const {videos, images} = useSelector(getCurrentPost)
 
   return (
     <div className="BodyText">
@@ -20,7 +20,7 @@ const BodyText = () => {
           .map((block, i) => (
             <BlockContent key={i} blocks={block} serializers={{}} />
           ))}
-    {video && images ? <ToggleButton /> : null}
+    {videos && images ? <ToggleButton /> : null}
     </div>
   )
 }

@@ -109,7 +109,7 @@ const Images = () => {
           : null}
       </div>
 
-      <div className="Images__selected">
+      <div className="Images__main">
         <img src={selectedImage} onClick={() => setModalIsOpen(true)} alt=""></img>
       </div>
     </div>

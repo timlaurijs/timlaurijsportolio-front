@@ -2,25 +2,28 @@
 
 .Homepage {
   // background-color: aqua;
-  max-height: 100vh;
-  max-width: 90%;
-  display: grid;
-  margin: auto;
-  grid-gap: 10px;
-  grid-template: 1fr 12fr 1fr / 3fr 6fr 3fr;
-  font-family: $fontPrimary;
-  font-weight: $light;
-  font-size: $bodyRegular;
+  min-height: 100vh;
+  min-width: 100vw;
+  .container {
+    max-width: 90%;
+    display: grid;
+    margin: auto;
+    grid-gap: 10px;
+    grid-template: 1fr 12fr 1fr / 3fr 6fr 3fr;
+    font-family: $fontPrimary;
+    font-weight: $light;
+    font-size: $bodyRegular;
 
-  &__Navigation {
-    // background-color: red;
-    grid-row: 1;
-    grid-column: 1;
-  }
+    &__Navigation {
+      // background-color: red;
+      grid-row: 1;
+      grid-column: 1;
+    }
 
-  &__Logo {
-    // background-color: darkgreen;
-    grid-row: 1;
-    grid-column: 3;
+    &__Logo {
+      // background-color: darkgreen;
+      grid-row: 1;
+      grid-column: 3;
+    }
   }
 }
