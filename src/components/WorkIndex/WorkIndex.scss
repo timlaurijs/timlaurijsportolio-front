@@ -2,13 +2,14 @@
 
 .WorkIndex {
   @include WorkIndex-grid;
-
-  padding: 8px;
-  // position: fixed;
   text-align: left;
-  // background: $primary;
+  font-size: $bodyRegular;
+  p {
+    font-style: $italic;
+  }
   a {
     display: block;
     line-height: 20px;
+    text-decoration: none;
   }
 }
