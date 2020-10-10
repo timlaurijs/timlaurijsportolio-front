@@ -9,8 +9,8 @@ import BodyText from "../../components/BodyText/BodyText"
 import Title from "../../components/Title/Title"
 import Footer from "../../components/Footer/Footer"
 //Store
-import { updateCurrentPost } from "../../App/App-actions"
-import { selectAllPosts } from "../../App/App-selectors"
+import { updateCurrentPost, updateMediaType } from "../../App/App-actions"
+import { selectAllPosts, getCurrentPost } from "../../App/App-selectors"
 //styling
 import "./Homepage.scss"
 
@@ -18,10 +18,17 @@ const Homepage = () => {
   const dispatch = useDispatch()
   const { slug } = useParams()
   const posts = useSelector(selectAllPosts)
+  const { images} = useSelector(getCurrentPost)
 
+  //update current post
   useEffect(() => {
     if (posts && posts.length > 0) dispatch(updateCurrentPost(slug))
   }, [slug, posts, dispatch])
+
+  //if no images available set mediaType to video
+  useEffect(() => {
+    if(posts && !images) dispatch(updateMediaType("video"))
+  }, [posts, images, dispatch])
 
   return (
     <div className="Homepage">
@@ -29,8 +36,8 @@ const Homepage = () => {
       <div className="Homepage__Logo">Logo</div>
       <Title />
       <WorkIndex />
-      {/* <VideoPlayer /> */}
-      <Images />
+      <Images /> 
+      <VideoPlayer />
       <BodyText />
       <Footer />
     </div>
