@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import Modal from "react-modal"
 //store
-import { selectImages, getCurrentPost } from "../../App/App-selectors"
+import { selectImages } from "../../App/App-selectors"
 //style
 import "./Images.scss"
 
@@ -18,7 +18,14 @@ const Images = () => {
   const indexOfImage = imageUrls && imageUrls.indexOf(selectedImage)
   const lengthOfImageUrls = imageUrls && imageUrls.length
 
-  console.log(lengthOfImageUrls)
+  const handleKeyDown = (index, indexLength) => (event) => {
+    if (event.key === "ArrowLeft" && !event.repeat)
+      setSelectedImage(imageUrls[index - 1 < 0 ? indexLength - 1 : index - 1])
+    else if (event.key === "ArrowRight" && !event.repeat)
+      setSelectedImage(imageUrls[(index + 1) % indexLength])
+    else return
+  }
+
   // sets selectedImage fot first of the array if empty
   useEffect(() => {
     if (imageUrls && selectedImage === "") setSelectedImage(imageUrls[0])
@@ -38,15 +45,8 @@ const Images = () => {
     return () => {
       window.removeEventListener("keydown", handler)
     }
-  }, [indexOfImage])
+  }, [indexOfImage, lengthOfImageUrls, handleKeyDown])
 
-  const handleKeyDown = (index, indexLength) => (event) => {
-    if (event.key === "ArrowLeft" && !event.repeat)
-      setSelectedImage(imageUrls[index - 1 < 0 ? indexLength - 1 : index - 1])
-    else if (event.key === "ArrowRight" && !event.repeat)
-      setSelectedImage(imageUrls[(index + 1) % indexLength])
-    else return
-  }
 
   const selectedThumbnail = (url) => {
     if (url === selectedImage) {
@@ -91,6 +91,7 @@ const Images = () => {
         <img
           src={selectedImage}
           style={{ maxWidth: "100%", maxHeight: "100%", overflow: "hidden" }}
+          alt=""
         ></img>
       </Modal>
       <div className="Images__nav">
@@ -102,13 +103,14 @@ const Images = () => {
                 key={i}
                 onClick={() => setSelectedImage(image)}
                 style={selectedThumbnail(image)}
+                alt=""
               ></img>
             ))
           : null}
       </div>
 
       <div className="Images__selected">
-        <img src={selectedImage} onClick={() => setModalIsOpen(true)}></img>
+        <img src={selectedImage} onClick={() => setModalIsOpen(true)} alt=""></img>
       </div>
     </div>
   )
