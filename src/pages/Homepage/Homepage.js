@@ -58,7 +58,6 @@ const Homepage = () => {
 
   return (
     <div className="Homepage">
-      <div className="container">
         <div className="container__Navigation">Navigatie</div>
         <div className="container__Logo">Logo</div>
         <Title />
@@ -68,7 +67,6 @@ const Homepage = () => {
         <VideoPlayer /> */}
         <BodyText />
         <Footer />
-      </div>
     </div>
   )
 }
