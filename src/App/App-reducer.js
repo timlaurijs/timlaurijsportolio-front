@@ -3,14 +3,14 @@ import {
   UPDATE_CURRENT_POST,
   RESET_CURRENT_POST,
   UPDATE_ERROR,
-  UPDATE_MEDIA_TYPE
+  UPDATE_MEDIA_TYPE,
 } from "./App-actions"
 
 const initialState = {
   error: null,
   posts: [],
   currentPost: [],
-  mediaType: 'image'
+  mediaType: "image",
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -39,7 +39,7 @@ export default (state = initialState, { type, payload }) => {
     case UPDATE_MEDIA_TYPE:
       return {
         ...state,
-        mediaType: payload
+        mediaType: payload,
       }
     default:
       return state

@@ -8,14 +8,7 @@
   grid-row: 2;
   grid-column: 1;
 }
-@mixin VideoPlayer-grid {
-}
-@mixin Images-grid {
-  // background-color: orange;
-  grid-row: 2;
-  grid-column: 2;
-}
-@mixin Video-grid {
+@mixin Media-grid {
   // background-color: orange;
   grid-row: 2;
   grid-column: 2;

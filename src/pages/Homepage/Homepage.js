@@ -10,7 +10,7 @@ import Title from "../../components/Title/Title"
 import Footer from "../../components/Footer/Footer"
 //Store
 import { updateCurrentPost, updateMediaType } from "../../App/App-actions"
-import { selectAllPosts, getCurrentPost } from "../../App/App-selectors"
+import { selectAllPosts, getCurrentPost, selectMediaType } from "../../App/App-selectors"
 //styling
 import "./Homepage.scss"
 
@@ -18,7 +18,15 @@ const Homepage = () => {
   const dispatch = useDispatch()
   const { slug } = useParams()
   const posts = useSelector(selectAllPosts)
-  const { images} = useSelector(getCurrentPost)
+  const { images, videos} = useSelector(getCurrentPost)
+  const mediaType = useSelector(selectMediaType)
+
+  const mediaSelector = () =>{
+    if(mediaType === "images")
+    return <Images />
+    if(mediaType === "videos")
+    return <VideoPlayer />
+  }
 
   //update current post
   useEffect(() => {
@@ -27,19 +35,31 @@ const Homepage = () => {
 
   //if no images available set mediaType to video
   useEffect(() => {
-    if(posts && !images) dispatch(updateMediaType("video"))
-  }, [posts, images, dispatch])
+    if(posts && videos && !images) dispatch(updateMediaType("videos"))
+    else dispatch(updateMediaType("images"))
+  }, [posts, images, videos, dispatch])
+
+  useEffect(() => {
+    const mediaSelector = () =>{
+      if(mediaType === "images")
+      return <Images />
+      if(mediaType === "videos")
+      return <VideoPlayer />
+    }
+
+  }, [mediaType])
 
   return (
     <div className="Homepage">
-      <div className="Homepage__Navigation">Navigatie</div>
-      <div className="Homepage__Logo">Logo</div>
-      <Title />
-      <WorkIndex />
-      <Images /> 
-      <VideoPlayer />
-      <BodyText />
-      <Footer />
+        <div className="container__Navigation">Navigatie</div>
+        <div className="container__Logo">Logo</div>
+        <Title />
+        <WorkIndex />
+        {mediaSelector()}
+        {/* <Images /> 
+        <VideoPlayer /> */}
+        <BodyText />
+        <Footer />
     </div>
   )
 }

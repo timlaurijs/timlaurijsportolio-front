@@ -3,7 +3,8 @@
 .Homepage {
   // background-color: aqua;
   max-height: 100vh;
-  max-width: 90%;
+  min-height: 100vh;
+  max-width: 90vw;
   display: grid;
   margin: auto;
   grid-gap: 10px;

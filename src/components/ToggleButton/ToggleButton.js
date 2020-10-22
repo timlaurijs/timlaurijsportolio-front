@@ -3,15 +3,17 @@ import { useSelector , useDispatch} from "react-redux"
 //store
 import {selectMediaType } from "../../App/App-selectors"
 import { updateMediaType} from "../../App/App-actions"
+// style
+import "./ToggleButton.scss"
 
 const ToggleButton = () => {
   const dispatch = useDispatch()
   const mediaType = useSelector(selectMediaType)
 
-const toggleMediaType = () => mediaType === "image" ? "video" : "image"
+const toggleMediaType = () => mediaType === "images" ? "videos" : "images"
 
 return (
-    <div>
+    <div className="ToggleButton">
       <button onClick={() => dispatch(updateMediaType(toggleMediaType()))}>{toggleMediaType()}</button>
     </div>
   )

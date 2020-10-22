@@ -4,6 +4,17 @@
   @include BodyText-grid;
   text-align: left;
   margin-right: 10px;
+  position: relative;
+  margin-left: 10px;
+
+  .ToggleButton {
+    padding-top: 15px;
+    width: 100%;
+    button {
+      width: 100%;
+      color: green;
+    }
+  }
   em {
     font-style: $italic;
   }
