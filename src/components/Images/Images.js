@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import Modal from "react-modal"
+import useMediaPlayer from "../../Hooks/useMediaPlayer"
 //store
 import { selectImages } from "../../App/App-selectors"
 //style
@@ -12,80 +13,45 @@ import logo from "../../assets/colorpalette_test01.gif"
 const Images = () => {
   const { slug } = useParams()
   const imageUrls = useSelector(selectImages)
-  const [selectedImage, setSelectedImage] = useState("")
 
-  const indexOfImage = imageUrls && imageUrls.indexOf(selectedImage)
-  const lengthOfImageUrls = imageUrls && imageUrls.length
-  
-  const handleKeyDown = (index, indexLength) => (event) => {
-      if (event.key === "ArrowLeft" && !event.repeat)
-        setSelectedImage(imageUrls[index - 1 < 0 ? indexLength - 1 : index - 1])
-      else if (event.key === "ArrowRight" && !event.repeat)
-        setSelectedImage(imageUrls[(index + 1) % indexLength])
-      else return
-    }
-    
-    // sets selectedImage fot first of the array if empty
-    useEffect(() => {
-        if (imageUrls && selectedImage === "") setSelectedImage(imageUrls[0])
-      }, [imageUrls, selectedImage, slug])
-      
-      // setsSelected image if another work is clicked
-      useEffect(() => {
-          if (imageUrls && imageUrls.includes(selectedImage)) return
-          else if (imageUrls) setSelectedImage(imageUrls[0])
-          else setSelectedImage("")
-        }, [imageUrls, selectedImage])
-        
-        // add event listener for keydown
-        useEffect(() => {
-            const handler = handleKeyDown(indexOfImage, lengthOfImageUrls)
-            window.addEventListener("keydown", handler)
-            return () => {
-                window.removeEventListener("keydown", handler)
-              }
-            }, [indexOfImage, lengthOfImageUrls, handleKeyDown])
-            
+  const { selectedUrl, setSelectedUrl, selectedThumbnail } = useMediaPlayer({
+    mediaUrls: imageUrls,
+    slug,
+  })
+
   const [modalIsOpen, setModalIsOpen] = useState(false)
   Modal.setAppElement("#root")
-            
-
-  const selectedThumbnail = (url) => {
-    if (url === selectedImage) {
-      return { opacity: 1 }
-    }
-  }
 
   return (
     <div className="Images">
-      
       <div className="Images__main">
-        <img src={selectedImage} onClick={() => setModalIsOpen(true)} alt=""></img>
-        {imageUrls === undefined ? 
-        <div className="Images__main__default">
-          <img  src={logo}></img> :
-        </div> :
-          null
-        }
-      </div>
-      
-      {imageUrls && imageUrls.length > 1 ? 
-      <div className="Images__nav">
-        {imageUrls.map((image, i) => (
-              <img
-                src={image}
-                className="Images__nav__button"
-                key={i}
-                onClick={() => setSelectedImage(image)}
-                style={selectedThumbnail(image)}
-                alt=""
-              ></img>
-            ))}
+        <img
+          src={selectedUrl}
+          onClick={() => setModalIsOpen(true)}
+          alt=""
+        ></img>
+        {imageUrls === undefined ? (
+          <div className="Images__main__default">
+            <img src={logo}></img> :
           </div>
-          : null
-          }
+        ) : null}
+      </div>
 
-      
+      {imageUrls && imageUrls.length > 1 ? (
+        <div className="Images__nav">
+          {imageUrls.map((image, i) => (
+            <img
+              src={image}
+              className="Images__nav__button"
+              key={i}
+              onClick={() => setSelectedUrl(image)}
+              style={selectedThumbnail(image)}
+              alt=""
+            ></img>
+          ))}
+        </div>
+      ) : null}
+
       <Modal
         style={{
           overlay: {
@@ -119,7 +85,7 @@ const Images = () => {
         onRequestClose={() => setModalIsOpen(false)}
       >
         <img
-          src={selectedImage}
+          src={selectedUrl}
           style={{ maxWidth: "100%", maxHeight: "100%", overflow: "hidden" }}
           alt=""
         ></img>
