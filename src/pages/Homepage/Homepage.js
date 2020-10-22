@@ -21,11 +21,6 @@ const Homepage = () => {
   const { images, videos} = useSelector(getCurrentPost)
   const mediaType = useSelector(selectMediaType)
 
-  // console.log("mediaType:", mediaType);
-  console.log("Images:", images);
-  console.log("videos:", videos);
-  // console.log("posts:", posts);
-
   const mediaSelector = () =>{
     if(mediaType === "images")
     return <Images />
@@ -42,8 +37,6 @@ const Homepage = () => {
   useEffect(() => {
     if(posts && videos && !images) dispatch(updateMediaType("videos"))
     else dispatch(updateMediaType("images"))
-    // else if(posts && !videos && images) dispatch(updateMediaType("images"))
-    // else dispatch(updateMediaType("images"))
   }, [posts, images, videos, dispatch])
 
   useEffect(() => {
