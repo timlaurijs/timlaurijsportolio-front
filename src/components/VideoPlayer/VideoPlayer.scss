@@ -30,5 +30,12 @@
     flex: 1;
     justify-content: center;
     align-items: flex-end;
+    img {
+      width: auto;
+      height: calc(100% - 3px);
+      object-fit: cover;
+      padding: 1px;
+      opacity: 0.5;
+    }
   }
 }
