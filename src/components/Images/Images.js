@@ -3,6 +3,8 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import Modal from "react-modal"
 import useMediaPlayer from "../../Hooks/useMediaPlayer"
+import { sanityimageUrl } from "../../utils/Api"
+
 //store
 import { selectImages } from "../../App/App-selectors"
 //style
@@ -13,6 +15,18 @@ import logo from "../../assets/colorpalette_test01.gif"
 const Images = () => {
   const { slug } = useParams()
   const imageUrls = useSelector(selectImages)
+
+  useEffect(() => {
+    if (imageUrls)
+      imageUrls.forEach((url) => {
+        const img = new Image()
+        img.src = urlFor(url).width(1000).url()
+      })
+  }, [imageUrls])
+
+  const urlFor = (source) => {
+    return sanityimageUrl.image(source)
+  }
 
   const { selectedUrl, setSelectedUrl, selectedThumbnail } = useMediaPlayer({
     mediaUrls: imageUrls,
@@ -26,7 +40,8 @@ const Images = () => {
     <div className="Images">
       <div className="Images__main">
         <img
-          src={selectedUrl}
+          src={urlFor(selectedUrl).width(1000).url()}
+          // src={selectedUrl}
           onClick={() => setModalIsOpen(true)}
           alt=""
         ></img>
@@ -41,7 +56,7 @@ const Images = () => {
         <div className="Images__nav">
           {imageUrls.map((image, i) => (
             <img
-              src={image}
+              src={urlFor(image).flipHorizontal().width(200).url()}
               className="Images__nav__button"
               key={i}
               onClick={() => setSelectedUrl(image)}
@@ -86,7 +101,13 @@ const Images = () => {
       >
         <img
           src={selectedUrl}
-          style={{ maxWidth: "100%", maxHeight: "100%", overflow: "hidden" }}
+          style={{
+            width: "auto",
+            maxHeight: "100%",
+            // Height: "auto",
+            overflow: "hidden",
+            objectFit: "cover",
+          }}
           alt=""
         ></img>
       </Modal>
