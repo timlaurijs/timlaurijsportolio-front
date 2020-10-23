@@ -1,4 +1,5 @@
 import sanity from "@sanity/client"
+import imageUrlBuilder from "@sanity/image-url"
 
 const {
   NODE_ENV,
@@ -6,8 +7,17 @@ const {
   REACT_APP_SANITY_DATASET: SANITY_DATASET,
 } = process.env
 
-export const sanityClient = sanity({
+const sanityCredentials = {
   projectId: SANITY_PROJECT_ID,
   dataset: SANITY_DATASET,
   useCdn: NODE_ENV === "production",
-})
+}
+
+export const sanityClient = sanity(sanityCredentials)
+export const sanityimageUrl = imageUrlBuilder(sanityCredentials)
+
+// export const sanityClient = sanity({
+//   projectId: SANITY_PROJECT_ID,
+//   dataset: SANITY_DATASET,
+//   useCdn: NODE_ENV === "production",
+// })
