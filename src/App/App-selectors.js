@@ -12,7 +12,8 @@ export const selectTitles = (state) =>
     title,
     slug,
     id,
-    publishedAt: new Date(publishedAt).getFullYear(),
+    publishedAt,
+    yearPublished: new Date(publishedAt).getFullYear(),
   }))
 
 export const selectTitle = (state) =>

@@ -1,5 +1,5 @@
 export const fetchPosts = `
-* [_type=="post"] | order (publishedAt, DESC){
+* [_type=="post"] | order (publishedAt desc){
   "id":_id,
   "slug": slug.current,
   title,
