@@ -37,7 +37,12 @@ const useMediaPlayer = ({ mediaUrls, slug }) => {
   //highligh selected thumbnail
   const selectedThumbnail = (url) => {
     if (url === selectedUrl) {
-      return { opacity: 1 }
+      return {
+        opacity: 1,
+        filter: "hue-rotate(20deg)",
+        boxShadow: "0px 0px 40px 10px rgb(255, 255, 255, 0.2)",
+        zIndex: 1,
+      }
     }
   }
   return { selectedUrl, setSelectedUrl, selectedThumbnail }
